@@ -1,8 +1,77 @@
-﻿@{
+﻿@model Product
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="menu">
+    <ul class="list-items">
+        <li class="list-item"><a>evuowgeovgeviogeviphepvwevihwviw</a></li>
+        <li class="list-item"><a>2</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+        <li class="list-item"><a>3</a></li>
+    </ul>
 </div>
+<!-- Карточка товара -->
+<div class="cards">
+       
+        <div class="card">
+            <!-- Верхняя часть -->
+            <div class="card__top">
+                <!-- Изображение-ссылка товара -->
+                <a href="#" class="card__image">
+                    <img src="./image/iphone-14-pro-max-gold.png"
+                         alt="Apple IPhone 14 PRO Max Gold" />
+                </a>
+                <!-- Скидка на товар -->
+                <div class="card__label">-10%</div>
+            </div>
+            <!-- Нижняя часть -->
+            <div class="card__bottom">
+                <!-- Цены на товар (с учетом скидки и без)-->
+                <div class="card__prices">
+                    <div class="card__price card__price--discount">@Model.Price</div>
+                    <div class="card__price card__price--common">150 000</div>
+                </div>
+                <!-- Ссылка-название товара -->
+                <a href="#" class="card__title">
+                    Смартфон Apple IPhone 14 Pro Max 256Gb, золотой
+                </a>
+                <!-- Кнопка добавить в корзину -->
+                <button class="card__add">В корзину</button>
+            </div>
+        </div>
+    <div class="card">
+        <!-- Верхняя часть -->
+        <div class="card__top">
+            <!-- Изображение-ссылка товара -->
+            <a href="#" class="card__image">
+                <img src="./image/iphone-14-pro-max-gold.png"
+                     alt="Apple IPhone 14 PRO Max Gold" />
+            </a>
+            <!-- Скидка на товар -->
+            <div class="card__label">-10%</div>
+        </div>
+        <!-- Нижняя часть -->
+        <div class="card__bottom">
+            <!-- Цены на товар (с учетом скидки и без)-->
+            <div class="card__prices">
+                <div class="card__price card__price--discount">135 000</div>
+                <div class="card__price card__price--common">150 000</div>
+            </div>
+            <!-- Ссылка-название товара -->
+            <a href="#" class="card__title">
+                Смартфон Apple IPhone 14 Pro Max 256Gb, золотой
+            </a>
+            <!-- Кнопка добавить в корзину -->
+            <button class="card__add">В корзину</button>
+        </div>
+    </div>
+
+    </div>
