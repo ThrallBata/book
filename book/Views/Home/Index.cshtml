@@ -1,8 +1,42 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="menu">
+    <ul class="list-items">
+        <li class="list-item"><a href="#">Фантастика</a></li>
+        
+        
+    </ul>
 </div>
+
+<div class="cards">
+     @foreach (var item in Model){
+        <div class="card">
+        
+            <div class="card__top">
+                
+                <a href="#" class="card__image">
+                    <img src="./image/iphone-14-pro-max-gold.png"
+                         alt="@item.Name" />
+                </a>
+              
+                <div class="card__label">-10%</div>
+            </div>
+          
+            <div class="card__bottom">
+               
+                <div class="card__prices">
+                    <div class="card__price card__price--discount">@item.Price</div>
+                    <div class="card__price card__price--common">@item.Price</div>
+                </div>
+                
+                <a href="#" class="card__title">
+                    @item.Name
+                </a>
+               
+                <button class="card__add">В корзину</button>
+            </div>
+        </div>
+        }
+    </div>
