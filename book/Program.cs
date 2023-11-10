@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using book.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// добавляем контекст ApplicationContext в качестве сервиса в приложение
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,6 +1,7 @@
 ﻿using book.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using book.Database;
 
 namespace book.Controllers
 {
@@ -8,7 +9,7 @@ namespace book.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration Configuration;
-        private ApplicationContext db = new ApplicationContext();
+        // private ApplicationContext db = new ApplicationContext();
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
@@ -18,34 +19,42 @@ namespace book.Controllers
 
         public IActionResult Index()
         {
-            var adminName = Configuration.GetSection("Admin:Name");
-            int price = 150000;
-            string name = "Смартфон Apple IPhone 14 Pro Max 256Gb, голубой";
-            var product = new Product { Name = name, Price = price };
-            /*using (ApplicationContext db = new ApplicationContext())
-            {
-                // создаем два объекта User
-                User user1 = new User { Name = "Tom", Age = 33 };
-                User user2 = new User { Name = "Alice", Age = 26 };
+            /*
+            var products = new List<Product> 
+            { 
+                new Product{
+                   Id = 1,
+                   Name = "A Song of Ice and Fire",
+                   Price = 100,
+                   Slug = "IceandFire",
+                   Categories = {},
+                },
+               new Product { Id = 2, Name = "The Lord of the Rings", Price = 200,
+                             Slug = "LordoftheRings",
+                   Categories = { }
+               },
+               new Product { Id = 3, Name = "War and peace", Price = 300,
+                             Slug = "Warandpeace",
+                   Categories = { }
+               }
+            };
 
-                // добавляем их в бд
-                db.Users.AddRange(user1, user2);
-                db.SaveChanges();
+            var categorys = new List<Category>
+            {
+                new Category { Id = 1, Name = "Fantastic", Slug = "Fantastic" }
+            };*/
+
+            List<Product> Products;
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Products = db.Products.ToList();
+
             }
-            using (ApplicationContext db = new)
-            {
-                // получаем объекты из бд и выводим на консоль
-                var Products = db.Products.ToList();
-                Console.WriteLine("Users list:");
-                foreach (Product p in Products)
-                {
-                    Console.WriteLine($"{p.Id}.{p.Name} - {p.Price}");
-                }
-                */
 
-                return View(product);
 
-            
+            return View(Products);
+
+
         }
 
         public IActionResult Privacy()
@@ -54,11 +63,8 @@ namespace book.Controllers
         }
         [HttpGet]
         public IActionResult About()
-        {
-            int price = 228;
-            string name = "Andrey";
-            var product = new Product { Name = name, Price = price };
-            return View(product);
+        { 
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
