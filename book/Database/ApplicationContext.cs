@@ -1,33 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
 namespace book.Database
 {
 
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext()
-        {
-        }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-        {
-            Database.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=.\\SqlExpress; Database=applicationdb;Trusted_Connection=True; TrustServerCertificate=true;");
-            }
-        }
-
-        public DbSet<User> Users { get; set; } = null!;
-        public DbSet<Product> Products { get; set; } = null!;
-        public DbSet<Category> Categories { get; set; } = null!;
+        { }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
