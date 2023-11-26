@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using book.Database;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Policy;
 
 namespace book.Controllers
 {
@@ -9,48 +12,31 @@ namespace book.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration Configuration;
-        // private ApplicationContext db = new ApplicationContext();
-
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+       
+        private readonly ApplicationContext Context;
+        public IEnumerable<Product> Products { get; set; }
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, ApplicationContext context)
         {
             _logger = logger;
             Configuration = configuration;
+            Context = context;
         }
-
         public IActionResult Index()
         {
-            /*
-            var products = new List<Product> 
-            { 
-                new Product{
-                   Id = 1,
-                   Name = "A Song of Ice and Fire",
-                   Price = 100,
-                   Slug = "IceandFire",
-                   Categories = {},
-                },
-               new Product { Id = 2, Name = "The Lord of the Rings", Price = 200,
-                             Slug = "LordoftheRings",
-                   Categories = { }
-               },
-               new Product { Id = 3, Name = "War and peace", Price = 300,
-                             Slug = "Warandpeace",
-                   Categories = { }
-               }
+           /* Product p1 = new Product
+            {
+                Name = "A Song of Ice and Fire",
+                Price = 100,
+                Slug = "IceandFire",
+                Categories = { },
             };
+            
 
-            var categorys = new List<Category>
-            {
-                new Category { Id = 1, Name = "Fantastic", Slug = "Fantastic" }
-            };*/
+            // добавление
+            Context.Products.Add(p1);
+            Context.SaveChanges();*/
 
-            List<Product> Products;
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                Products = db.Products.ToList();
-
-            }
-
+            Products = Context.Products.ToList();
 
             return View(Products);
 

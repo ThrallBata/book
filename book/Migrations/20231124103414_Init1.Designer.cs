@@ -12,8 +12,8 @@ using book.Database;
 namespace book.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20231110033043_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20231124103414_Init1")]
+    partial class Init1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
